@@ -7,12 +7,23 @@ window.resizable(width=False, height=False)
 
 # Swap Method
 def swap():
-    return 0
+    if lbl_temp["text"] == "\N{DEGREE FAHRENHEIT}":
+        lbl_temp["text"] = "\N{DEGREE CELSIUS}"
+        lbl_result["text"] = "\N{DEGREE FAHRENHEIT}"
+    else:
+        lbl_temp["text"] = "\N{DEGREE FAHRENHEIT}"
+        lbl_result["text"] = "\N{DEGREE CELSIUS}"
+
 # Conversion Method
 def convert():
-    fahrenheit = ent_temp.get()
-    celsius = (5 / 9) * (float(fahrenheit) - 32)
-    lbl_result["text"] = f"{round(celsius, 2)} \N{DEGREE CELSIUS}"
+    if lbl_temp["text"] == "\N{DEGREE FAHRENHEIT}":
+        fahrenheit = ent_temp.get()
+        celsius = (5 / 9) * (float(fahrenheit) - 32)
+        lbl_result["text"] = f"{round(celsius, 2)} \N{DEGREE CELSIUS}"
+    else:
+        celsius = ent_temp.get()
+        fahrenheit = float(celsius) * (9 / 5) + 32
+        lbl_result["text"] = f"{round(fahrenheit, 2)} \N{DEGREE FAHRENHEIT}"
 
 # Initialize Frames for two rows
 frm_row_one = tk.Frame(master=window)
